@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2332897887625671890}
   - component: {fileID: 4190365458269944320}
   - component: {fileID: 2629086405774791765}
+  - component: {fileID: -6773306450429358540}
+  - component: {fileID: 86251659429748329}
   m_Layer: 0
   m_Name: pancake_0
   m_TagString: Pancake
@@ -128,14 +130,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8956207775009747481}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe43339c935c5284fb421555fbcc97f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PancakeDrag
   dragThreshold: 0.5
   bounceForce: 7
-  chainBounceForce: 4
+  followSpeed: 25
+  blinkEffectPrefab: {fileID: 3556474755529313531, guid: a4d933816abccc64a8b8526ede526b9f, type: 3}
 --- !u!61 &2629086405774791765
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -143,7 +146,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8956207775009747481}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 257c254fcd73e56439bd75a7db29c507, type: 2}
@@ -182,3 +185,54 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 12.925897, y: 2.0663152}
   m_EdgeRadius: 0
+--- !u!114 &-6773306450429358540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8956207775009747481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65e44e3f8364fa74e844c8521184ac58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PancakeLogic
+  bounceForce: 2
+  blinkEffectPrefab: {fileID: 3556474755529313531, guid: a4d933816abccc64a8b8526ede526b9f, type: 3}
+--- !u!70 &86251659429748329
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8956207775009747481}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 257c254fcd73e56439bd75a7db29c507, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.034574997, y: -1.9013278}
+  m_Size: {x: 12.339135, y: 1.8373573}
+  m_Direction: 1

@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = score + " pieces";
 
         
-        if (score > 10 && ((score-11) % 3 == 0 || score % 5 == 0))
+        if (score > 10 && ((score-11) % 5 == 0))
         {
             if (gameCamera != null)
             {

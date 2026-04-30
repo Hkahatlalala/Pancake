@@ -17,11 +17,15 @@ public class PancakeDrag : MonoBehaviour
     public float bounceForce = 35f;
     public float followSpeed = 25f;
 
+    public GameObject blinkEffectPrefab;
+
     public static int globalSortOrder = 10;
     private float currentWiggle = 0f;
     private float defaultGravity;
 
-    // Lấy component lúc mới đẻ ra và cấp số thứ tự Layer để không bị đè hình
+    // Cờ báo hiệu chỉ cho nổ pháo hoa ở lần chạm đĩa đầu tiên
+    private bool isFirstLand = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -37,7 +41,6 @@ public class PancakeDrag : MonoBehaviour
         globalSortOrder++;
     }
 
-    // Vòng lặp chính: Cập nhật rung Shader, xử lý chạm, kéo bằng gia tốc và thả bánh
     void Update()
     {
         if (mat != null)
@@ -79,7 +82,6 @@ public class PancakeDrag : MonoBehaviour
                         isOnSpatula = false;
                         isDragging = true;
 
-                        // CHỐT ĐƠN: Cập nhật size to làm size gốc vĩnh viễn luôn!
                         originalScale = transform.localScale;
 
                         rb.bodyType = RigidbodyType2D.Dynamic;
@@ -119,6 +121,9 @@ public class PancakeDrag : MonoBehaviour
                         rb.interpolation = RigidbodyInterpolation2D.None;
 
                         rb.linearVelocity = Vector2.zero;
+
+                        // Bật cờ lên khi mài buông tay thả bánh
+                        isFirstLand = true;
 
                         float overDrag = transform.position.y - mousePos.y;
 
@@ -162,7 +167,6 @@ public class PancakeDrag : MonoBehaviour
         }
     }
 
-    // Xử lý nén dẹt tinh tế và bơm lực vào Shader khi bánh bị đập mạnh
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (!isOnSpatula && !isDragging)
@@ -175,11 +179,20 @@ public class PancakeDrag : MonoBehaviour
                 transform.localScale = new Vector3(originalScale.x * stretch, originalScale.y * squash, originalScale.z);
 
                 currentWiggle += impactForce * 0.08f;
+
+                // CHỈ NỔ NẾU ĐÂY LÀ LẦN RỚT ĐẦU TIÊN TỪ TRÊN TAY XUỐNG
+                if (isFirstLand && blinkEffectPrefab != null)
+                {
+                    GameObject fx = Instantiate(blinkEffectPrefab, transform.position, Quaternion.identity);
+                    Destroy(fx, 1.5f);
+
+                    // Dập cờ đi, cấm nổ bậy bạ ở các lần nảy sau
+                    isFirstLand = false;
+                }
             }
         }
     }
 
-    // Đổi tọa độ màn hình của chuột sang tọa độ thế giới 2D trong game
     Vector3 GetMouseWorldPos()
     {
         Vector3 screenPos = Input.mousePosition;

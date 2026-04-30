@@ -63,10 +63,12 @@
   <ItemGroup>
     <Compile Include="Assets\Script\DeadZone.cs" />
     <Compile Include="Assets\Script\GameCamera.cs" />
+    <Compile Include="Assets\Script\PancakeLogic.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\PancakeDrag.cs" />
     <Compile Include="Assets\Script\PancakeSpawner.cs" />
     <Compile Include="Assets\Script\PancakePhysics.cs" />
+    <Compile Include="Assets\Script\SpatulaController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
