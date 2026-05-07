@@ -5,10 +5,10 @@ public class SpatulaController : MonoBehaviour
 {
     public GameObject pancakePrefab;
     public GameObject smokeParticlePrefab;
+    public GameObject clickEffectPrefab; // ĐÂY NÈ: Ổ cắm cho hiệu ứng click của mài
     public Transform spawnPoint;
     public float dragThreshold = 0.5f;
 
-    // BẬT PUBLIC 3 biến này để Camera nó nhìn thấy mà không giật giành lúc mài đang kéo chuột
     [HideInInspector] public bool isTilting = false;
     [HideInInspector] public bool isDragging = false;
     [HideInInspector] public Vector3 defaultPosition;
@@ -31,6 +31,16 @@ public class SpatulaController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mousePos = GetMouseWorldPos();
+
+            // --- TUYỆT KỸ ĐẺ HIỆU ỨNG CLICK DƯỚI NGÓN TAY ---
+            if (clickEffectPrefab != null)
+            {
+                // Đẻ hiệu ứng ra và đưa tọa độ Z về mức chuẩn để Camera thấy được
+                Vector3 fxPos = new Vector3(mousePos.x, mousePos.y, 0f);
+                GameObject fx = Instantiate(clickEffectPrefab, fxPos, Quaternion.identity);
+                Destroy(fx, 1f); // Cho sống 1 giây diễn trò rồi phi tang xác cho nhẹ RAM
+            }
+
             Collider2D hit = Physics2D.OverlapPoint(mousePos);
 
             if (hit != null && hit.gameObject == gameObject)
@@ -95,11 +105,14 @@ public class SpatulaController : MonoBehaviour
             yield return null;
         }
 
-        // 2. THẢ BÁNH
+        // 2. THẢ BÁNH VÀ PHÁT ÂM THANH
         if (currentPancake != null)
         {
             currentPancake.GetComponent<PancakeLogic>().DropPancake();
             currentPancake = null;
+
+            // ---> CẮM LỆNH PHÁT TIẾNG RỚT BÁNH Ở ĐÂY <---
+            if (GameManager.instance != null) GameManager.instance.PlayDropSound();
         }
 
         yield return new WaitForSeconds(0.05f);
@@ -123,7 +136,7 @@ public class SpatulaController : MonoBehaviour
         transform.position = dropPos;
         transform.rotation = startRot;
 
-        // 4. BAY LƯỚT VỀ NHÀ MỚI (Cái defaultPosition lúc này đã được Camera tự động đưa lên cao!)
+        // 4. BAY LƯỚT VỀ NHÀ
         elapsed = 0f;
         float flyDuration = 0.25f;
         while (elapsed < flyDuration)
@@ -167,6 +180,9 @@ public class SpatulaController : MonoBehaviour
 
         currentPancake = Instantiate(pancakePrefab, spawnPoint.position, Quaternion.identity);
         currentPancake.transform.SetParent(transform);
+
+        // ---> CẮM LỆNH PHÁT TIẾNG ĐẺ BÁNH Ở ĐÂY <---
+        if (GameManager.instance != null) GameManager.instance.PlaySpawnSound();
     }
 
     Vector3 GetMouseWorldPos()

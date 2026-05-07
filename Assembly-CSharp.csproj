@@ -62,9 +62,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\DeadZone.cs" />
+    <Compile Include="Assets\Script\BlinkText.cs" />
     <Compile Include="Assets\Script\GameCamera.cs" />
     <Compile Include="Assets\Script\PancakeLogic.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
+    <Compile Include="Assets\Script\UIBounce.cs" />
+    <Compile Include="Assets\Script\UIBouncingShader.cs" />
     <Compile Include="Assets\Script\PancakeDrag.cs" />
     <Compile Include="Assets\Script\PancakeSpawner.cs" />
     <Compile Include="Assets\Script\PancakePhysics.cs" />

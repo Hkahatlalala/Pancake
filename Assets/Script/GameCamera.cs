@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class GameCamera : MonoBehaviour
 {
@@ -9,13 +10,20 @@ public class GameCamera : MonoBehaviour
     private float targetSize;
     private Vector3 targetCamPos;
     private Vector3 targetSpawnerPos;
-    private SpatulaController spatula; // Kết nối với script Xẻng
+    private SpatulaController spatula;
+
+    private Vector3 shakeOffset = Vector3.zero;
+
+    // Tui thêm cái neo này để giữ tọa độ gốc của Camera, không bị dính chùm với hiệu ứng rung
+    private Vector3 realCamPos;
 
     void Start()
     {
         cam = GetComponent<Camera>();
         targetSize = cam.orthographicSize;
-        targetCamPos = transform.position;
+
+        realCamPos = transform.position;
+        targetCamPos = realCamPos;
 
         if (spawner != null)
         {
@@ -26,17 +34,19 @@ public class GameCamera : MonoBehaviour
 
     void Update()
     {
-        // 1. Camera tự động zoom và nhích lên cao
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetSize, Time.deltaTime * 3f);
-        transform.position = Vector3.Lerp(transform.position, targetCamPos, Time.deltaTime * 3f);
+        // 1. DÙNG unscaledDeltaTime ĐỂ BẤT TỬ VỚI TIMESCALE = 0
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetSize, Time.unscaledDeltaTime * 3f);
 
-        // 2. Ép Xẻng đi theo Camera cực kỳ mượt mà
+        // 2. Tính toán điểm neo thực tế của Camera
+        realCamPos = Vector3.Lerp(realCamPos, targetCamPos, Time.unscaledDeltaTime * 3f);
+
+        // 3. Tọa độ xuất ra màn hình = Điểm neo thực tế + Lực Rung (Bao giật)
+        transform.position = realCamPos + shakeOffset;
+
         if (spatula != null)
         {
-            // Liên tục cập nhật tọa độ "Nhà Mới" lên cao dần theo Camera
-            spatula.defaultPosition = Vector3.Lerp(spatula.defaultPosition, targetSpawnerPos, Time.deltaTime * 3f);
+            spatula.defaultPosition = Vector3.Lerp(spatula.defaultPosition, targetSpawnerPos, Time.unscaledDeltaTime * 3f);
 
-            // LUẬT THÉP: Chỉ lôi cái xẻng đi khi nó ĐANG RẢNH RỖI (không bị kéo, không đổ bánh)
             if (!spatula.isDragging && !spatula.isTilting)
             {
                 spawner.position = spatula.defaultPosition;
@@ -50,7 +60,30 @@ public class GameCamera : MonoBehaviour
         targetCamPos.y += zoomStep;
         if (spawner != null)
         {
-            targetSpawnerPos.y += (zoomStep * 2f); // Nhích mục tiêu của xẻng lên cao theo tỷ lệ 2 lần zoom
+            targetSpawnerPos.y += (zoomStep * 2f);
         }
+    }
+
+    public void TriggerShake(float duration, float magnitude)
+    {
+        StartCoroutine(ShakeCoroutine(duration, magnitude));
+    }
+
+    IEnumerator ShakeCoroutine(float duration, float magnitude)
+    {
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+
+            shakeOffset = new Vector3(x, y, 0f);
+
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        shakeOffset = Vector3.zero;
     }
 }
