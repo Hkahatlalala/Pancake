@@ -14,8 +14,9 @@ public class PancakeLogic : MonoBehaviour
     private float currentWiggle = 0f;
     private bool isFirstLand = false;
     private bool isDropped = false;
-    private bool hasPlayedHitSound = false; // Thêm lại cờ âm thanh
+    private bool hasPlayedHitSound = false;
 
+    // Khởi tạo các component cơ bản và thiết lập vật lý ban đầu
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -25,32 +26,22 @@ public class PancakeLogic : MonoBehaviour
         if (rb != null)
         {
             rb.centerOfMass = new Vector2(0f, -0.8f);
-        }
-        // TÀNG HÌNH: Tránh chớp hình 1 frame lúc đẻ
-        if (sr != null) sr.enabled = false;
-
-        if (rb != null)
-        {
             rb.bodyType = RigidbodyType2D.Kinematic;
         }
+
+        if (sr != null) sr.enabled = false;
     }
 
+    // Thiết lập kích thước chuẩn
     void Start()
     {
-        // Nhớ kích thước chuẩn sau khi Unity tính toán xong Parent
         originalScale = transform.localScale;
-
-        // Bóp bánh nhỏ lại chuẩn bị diễn ảo thuật
         transform.localScale = Vector3.zero;
-
-        // HIỆN HÌNH lại
         if (sr != null) sr.enabled = true;
-
-        // Khởi động Coroutine nảy tưng tưng
         StartCoroutine(SpawnPopAnimation());
     }
 
-    // TUYỆT KỸ EASE OUT BACK CHO BÁNH VỪA ĐẺ
+    // Hoạt ảnh phóng to EaseOutBack
     IEnumerator SpawnPopAnimation()
     {
         float duration = 0.25f;
@@ -65,20 +56,17 @@ public class PancakeLogic : MonoBehaviour
             float c3 = c1 + 1f;
             float easeValue = 1f + c3 * Mathf.Pow(t - 1f, 3f) + c1 * Mathf.Pow(t - 1f, 2f);
 
-            // Chỉ thay đổi scale nếu bánh CHƯA rớt
-            // Để tránh xung đột với hiệu ứng bẹp nảy lúc đáp xuống tháp
             if (!isDropped)
             {
                 transform.localScale = originalScale * easeValue;
             }
-
             yield return null;
         }
 
-        // Chốt đơn kích thước gốc
         if (!isDropped) transform.localScale = originalScale;
     }
 
+    // Cập nhật liên tục mỗi frame: truyền dữ liệu độ rung cho Shader, và Sorting Order
     void Update()
     {
         if (mat != null)
@@ -90,7 +78,6 @@ public class PancakeLogic : MonoBehaviour
 
         if (isDropped)
         {
-            // FIX BỆNH MẤT NGỦ: Chỉ Lerp khi chưa đạt size chuẩn. Về form rồi là KHÓA CỨNG luôn!
             if (Mathf.Abs(transform.localScale.y - originalScale.y) > 0.005f)
             {
                 transform.localScale = Vector3.Lerp(transform.localScale, originalScale, Time.deltaTime * 10f);
@@ -100,11 +87,24 @@ public class PancakeLogic : MonoBehaviour
                 transform.localScale = originalScale;
             }
 
-            // FIX BỆNH NHÁY HÌNH
             sr.sortingOrder = Mathf.RoundToInt(transform.position.y * 10f) + 1000;
+        }
+        else
+        {
+            if (sr != null) sr.sortingOrder = 30000;
         }
     }
 
+    // Khóa góc xoay của bánh 
+    void LateUpdate()
+    {
+        if (!isDropped)
+        {
+            transform.rotation = Quaternion.identity;
+        }
+    }
+
+    // Tách bánh khỏi xẻng, kích hoạt hệ thống vật lý Dynamic để bánh rơi tự do
     public void DropPancake()
     {
         isDropped = true;
@@ -123,16 +123,15 @@ public class PancakeLogic : MonoBehaviour
         rb.mass = 1.2f;
     }
 
+    // Xử lý logic khi va chạm, tính toán lực nảy lan truyền xuống các bánh bên dưới và cộng điểm
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // 1. ÂM THANH "BẸP" (Chỉ kêu 1 lần)
         if (!hasPlayedHitSound)
         {
             if (GameManager.instance != null) GameManager.instance.PlayDropSound();
             hasPlayedHitSound = true;
         }
 
-        // 2. HIỆU ỨNG SÓNG CHẤN ĐỘNG CỦA MÀI
         if (isDropped && isFirstLand)
         {
             if (collision.contacts.Length > 0 && collision.contacts[0].point.y < transform.position.y)
@@ -182,6 +181,7 @@ public class PancakeLogic : MonoBehaviour
         }
     }
 
+    // Scale ép bánh theo trục Y và trục X
     public void ApplyVisualSquash(float factor)
     {
         float squash = Mathf.Clamp(1f - (factor * 0.1f), 0.7f, 1f);

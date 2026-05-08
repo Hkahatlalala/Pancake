@@ -4,7 +4,7 @@ using System.Collections;
 public class GameCamera : MonoBehaviour
 {
     public Transform spawner;
-    public float zoomStep = 0.3f;
+    public float zoomStep = 0.3f; // Tỉ lệ Scale
 
     private Camera cam;
     private float targetSize;
@@ -13,8 +13,6 @@ public class GameCamera : MonoBehaviour
     private SpatulaController spatula;
 
     private Vector3 shakeOffset = Vector3.zero;
-
-    // Tui thêm cái neo này để giữ tọa độ gốc của Camera, không bị dính chùm với hiệu ứng rung
     private Vector3 realCamPos;
 
     void Start()
@@ -32,17 +30,14 @@ public class GameCamera : MonoBehaviour
         }
     }
 
+    // Nội suy 
     void Update()
     {
-        // 1. DÙNG unscaledDeltaTime ĐỂ BẤT TỬ VỚI TIMESCALE = 0
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetSize, Time.unscaledDeltaTime * 3f);
-
-        // 2. Tính toán điểm neo thực tế của Camera
         realCamPos = Vector3.Lerp(realCamPos, targetCamPos, Time.unscaledDeltaTime * 3f);
-
-        // 3. Tọa độ xuất ra màn hình = Điểm neo thực tế + Lực Rung (Bao giật)
         transform.position = realCamPos + shakeOffset;
 
+        // Kéo vị trí gốc của Xẻng di chuyển tịnh tiến theo Scale Camera
         if (spatula != null)
         {
             spatula.defaultPosition = Vector3.Lerp(spatula.defaultPosition, targetSpawnerPos, Time.unscaledDeltaTime * 3f);
@@ -54,6 +49,7 @@ public class GameCamera : MonoBehaviour
         }
     }
 
+    // Scale
     public void ZoomOut()
     {
         targetSize += zoomStep;
@@ -69,6 +65,7 @@ public class GameCamera : MonoBehaviour
         StartCoroutine(ShakeCoroutine(duration, magnitude));
     }
 
+    // Tạo ra các tọa độ chênh lệch ngẫu nhiên liên tục để làm rung màn hình
     IEnumerator ShakeCoroutine(float duration, float magnitude)
     {
         float elapsed = 0f;

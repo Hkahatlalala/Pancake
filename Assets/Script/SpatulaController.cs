@@ -5,9 +5,11 @@ public class SpatulaController : MonoBehaviour
 {
     public GameObject pancakePrefab;
     public GameObject smokeParticlePrefab;
-    public GameObject clickEffectPrefab; // ĐÂY NÈ: Ổ cắm cho hiệu ứng click của mài
+    public GameObject clickEffectPrefab;
     public Transform spawnPoint;
-    public float dragThreshold = 0.5f;
+
+    public float dragThreshold = 0.2f; // Kéo tối thiểu 
+    public float minYLimit = -1.5f;    
 
     [HideInInspector] public bool isTilting = false;
     [HideInInspector] public bool isDragging = false;
@@ -18,27 +20,28 @@ public class SpatulaController : MonoBehaviour
     private Vector3 offset;
     private Vector3 dragStartMousePos;
 
+    // Lưu vị trí gốc và tạo bánh đầu tiên
     void Start()
     {
         defaultPosition = transform.position;
         SpawnNewPancake();
     }
 
+    // Xử lý thao tác chạm, kéo thả xẻng và giới hạn vùng di chuyển
     void Update()
     {
         if (isTilting) return;
 
+        // Tạo hiệu ứng click và ghi nhận vị trí
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mousePos = GetMouseWorldPos();
 
-            // --- TUYỆT KỸ ĐẺ HIỆU ỨNG CLICK DƯỚI NGÓN TAY ---
             if (clickEffectPrefab != null)
             {
-                // Đẻ hiệu ứng ra và đưa tọa độ Z về mức chuẩn để Camera thấy được
                 Vector3 fxPos = new Vector3(mousePos.x, mousePos.y, 0f);
                 GameObject fx = Instantiate(clickEffectPrefab, fxPos, Quaternion.identity);
-                Destroy(fx, 1f); // Cho sống 1 giây diễn trò rồi phi tang xác cho nhẹ RAM
+                Destroy(fx, 1f);
             }
 
             Collider2D hit = Physics2D.OverlapPoint(mousePos);
@@ -53,10 +56,16 @@ public class SpatulaController : MonoBehaviour
             }
         }
 
+        // Đang giữ và kéo: Di chuyển xẻng theo chuột, chốt chặn không cho rớt dưới minYLimit
         if (isDragging && Input.GetMouseButton(0))
         {
             Vector3 mousePos = GetMouseWorldPos();
-            transform.position = new Vector3(mousePos.x + offset.x, mousePos.y + offset.y, transform.position.z);
+
+            float newX = mousePos.x + offset.x;
+            float newY = mousePos.y + offset.y;
+            newY = Mathf.Max(newY, minYLimit);
+
+            transform.position = new Vector3(newX, newY, transform.position.z);
 
             if (Vector2.Distance(dragStartMousePos, mousePos) > dragThreshold)
             {
@@ -64,6 +73,7 @@ public class SpatulaController : MonoBehaviour
             }
         }
 
+        // Thả ngón tay: Quyết định đổ bánh hay thu xẻng về
         if (isDragging && Input.GetMouseButtonUp(0))
         {
             isDragging = false;
@@ -79,6 +89,7 @@ public class SpatulaController : MonoBehaviour
         }
     }
 
+    // Nghiêng xẻng -> Thả bánh -> Ngẩng xẻng -> Bay về vị trí cũ
     IEnumerator TiltAndDrop()
     {
         isTilting = true;
@@ -90,8 +101,9 @@ public class SpatulaController : MonoBehaviour
         float tiltDuration = 0.2f;
         float currentAngle = 0f;
         float targetAngle = -45f;
+        bool hasDropped = false;
 
-        // 1. NGHIÊNG XẺNG
+        // Giai đoạn 1: Nghiêng xẻng
         while (elapsed < tiltDuration)
         {
             elapsed += Time.deltaTime;
@@ -100,24 +112,34 @@ public class SpatulaController : MonoBehaviour
             float deltaAngle = targetAngleThisFrame - currentAngle;
 
             transform.RotateAround(spawnPoint.position, Vector3.forward, deltaAngle);
-
             currentAngle = targetAngleThisFrame;
+
+            // Thả bánh ngay khi xẻng nghiêng được 30%
+            if (percent >= 0.3f && !hasDropped)
+            {
+                if (currentPancake != null)
+                {
+                    currentPancake.GetComponent<PancakeLogic>().DropPancake();
+                    currentPancake = null;
+                    if (GameManager.instance != null) GameManager.instance.PlayDropSound();
+                }
+                hasDropped = true;
+            }
+
             yield return null;
         }
 
-        // 2. THẢ BÁNH VÀ PHÁT ÂM THANH
-        if (currentPancake != null)
+        // Đảm bảo bánh chắc chắn được thả nếu bị rớt frame
+        if (!hasDropped && currentPancake != null)
         {
             currentPancake.GetComponent<PancakeLogic>().DropPancake();
             currentPancake = null;
-
-            // ---> CẮM LỆNH PHÁT TIẾNG RỚT BÁNH Ở ĐÂY <---
             if (GameManager.instance != null) GameManager.instance.PlayDropSound();
         }
 
         yield return new WaitForSeconds(0.05f);
 
-        // 3. NGẨNG XẺNG
+        // Giai đoạn 2: Ngẩng xẻng 
         elapsed = 0f;
         currentAngle = 0f;
         float reverseAngle = 45f;
@@ -136,7 +158,7 @@ public class SpatulaController : MonoBehaviour
         transform.position = dropPos;
         transform.rotation = startRot;
 
-        // 4. BAY LƯỚT VỀ NHÀ
+        // Giai đoạn 3: Về vị trí chờ
         elapsed = 0f;
         float flyDuration = 0.25f;
         while (elapsed < flyDuration)
@@ -152,6 +174,7 @@ public class SpatulaController : MonoBehaviour
         SpawnNewPancake();
     }
 
+    // Về vị trí chờ nếu chưa kéo đủ xa
     IEnumerator ReturnToDefault()
     {
         isTilting = true;
@@ -170,6 +193,7 @@ public class SpatulaController : MonoBehaviour
         isTilting = false;
     }
 
+    // Tạo bánh mới, gán vào xẻng
     void SpawnNewPancake()
     {
         if (smokeParticlePrefab != null)
@@ -181,10 +205,10 @@ public class SpatulaController : MonoBehaviour
         currentPancake = Instantiate(pancakePrefab, spawnPoint.position, Quaternion.identity);
         currentPancake.transform.SetParent(transform);
 
-        // ---> CẮM LỆNH PHÁT TIẾNG ĐẺ BÁNH Ở ĐÂY <---
         if (GameManager.instance != null) GameManager.instance.PlaySpawnSound();
     }
 
+    // Chuyển đổi tọa độ chuột từ màn hình sang không gian 2D của Game
     Vector3 GetMouseWorldPos()
     {
         Vector3 screenPos = Input.mousePosition;

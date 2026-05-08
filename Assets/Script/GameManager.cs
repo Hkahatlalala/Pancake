@@ -14,48 +14,43 @@ public class GameManager : MonoBehaviour
 
     public bool isGameActive = false;
 
-    // BIẾN BẤT TỬ: Nhớ trạng thái để biết người chơi vừa chết hay mới mở app
     public static bool isRestarting = false;
 
-    // --- CỤC ÂM THANH TUI MỚI THÊM VÀO ---
-    public AudioClip spawnSound; // Băng chứa tiếng đẻ bánh
-    public AudioClip dropSound;  // Băng chứa tiếng rơi bánh
-    private AudioSource audioSource; // Cái Loa
+    public AudioClip spawnSound;
+    public AudioClip dropSound;
+    private AudioSource audioSource;
 
     void Awake()
     {
         instance = this;
-        // Bắt thằng GameManager đi kiếm cái Loa đang đeo trên người nó
         audioSource = GetComponent<AudioSource>();
     }
 
+    // Kiểm tra có phải Restart hay ko
     void Start()
     {
         if (isRestarting)
         {
-            // NẾU VỪA RESTART: Dẹp Menu, vô thẳng game quất luôn!
             mainMenuPanel.SetActive(false);
             gameOverPanel.SetActive(false);
             scoreText.gameObject.SetActive(true);
 
-            Time.timeScale = 1f; // Rã đông
+            Time.timeScale = 1f;
             isGameActive = true;
-
-            // Xóa cờ để lỡ mài có thoát game vào lại thì nó vẫn hiện Menu
             isRestarting = false;
         }
         else
         {
-            // NẾU MỚI MỞ GAME LẦN ĐẦU: Hiện Menu vàng khè
             mainMenuPanel.SetActive(true);
             gameOverPanel.SetActive(false);
             scoreText.gameObject.SetActive(false);
 
-            Time.timeScale = 0f; // Đóng băng
+            Time.timeScale = 0f;
             isGameActive = false;
         }
     }
 
+    // Vào Game từ Menu
     public void StartGame()
     {
         mainMenuPanel.SetActive(false);
@@ -65,7 +60,7 @@ public class GameManager : MonoBehaviour
         isGameActive = true;
     }
 
-    // --- 2 HÀM NÀY ĐỂ THẰNG XẺNG GỌI MỖI KHI CẦN KÊU ---
+    // Phát âm thanh xuất hiện bánh
     public void PlaySpawnSound()
     {
         if (spawnSound != null && audioSource != null)
@@ -74,6 +69,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Phát âm thanh khi bánh rơi chạm đĩa hoặc tháp bánh
     public void PlayDropSound()
     {
         if (dropSound != null && audioSource != null)
@@ -82,6 +78,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Tăng điểm và kiểm tra điều kiện scale Camera
     public void AddScore()
     {
         if (!isGameActive) return;
@@ -98,6 +95,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Xử lý thua cuộc
     public void GameOver()
     {
         if (gameCamera != null)
@@ -112,10 +110,10 @@ public class GameManager : MonoBehaviour
         isGameActive = false;
     }
 
+    // Tải lại Scene từ đầu bật isRestarting để game vào thẳng màn chơi mà không qua Menu
     public void Restart()
     {
         isRestarting = true;
-
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

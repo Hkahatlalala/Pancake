@@ -7,7 +7,6 @@ public class UIBouncingShader : MonoBehaviour
 
     void Start()
     {
-        // Trộm cái Material đang gắn trên cái ảnh UI
         mat = GetComponent<Image>().material;
     }
 
@@ -15,7 +14,6 @@ public class UIBouncingShader : MonoBehaviour
     {
         if (mat != null)
         {
-            // Liên tục bơm máu (unscaledTime) vào cái lỗ _UnscaledTime trong Shader
             mat.SetFloat("_UnscaledTime", Time.unscaledTime);
         }
     }
