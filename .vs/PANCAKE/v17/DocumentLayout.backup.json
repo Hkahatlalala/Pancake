@@ -3,28 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|c:\\users\\laptop\\onedrive\\documents\\unityprojects\\pancake\\assets\\script\\uibouncingshader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\assets\\script\\pancakelogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\pancakelogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|c:\\users\\laptop\\onedrive\\documents\\unityprojects\\pancake\\assets\\script\\gamecamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\gamecamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\assets\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\assets\\script\\deadzone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\deadzone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\assets\\script\\uibouncingshader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\uibouncingshader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|c:\\users\\laptop\\onedrive\\documents\\unityprojects\\pancake\\assets\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\assets\\script\\uibounce.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\uibounce.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\assets\\script\\blinktext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\blinktext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\assets\\script\\gamecamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\gamecamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\assets\\script\\spatulacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\spatulacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\assets\\script\\pancakelogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\pancakelogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\assets\\script\\pancakedrag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -33,10 +41,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\assets\\script\\pancakespawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\pancakespawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\assets\\script\\deadzone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC1BB84F-6018-14AC-9DE6-8465DAC9573A}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\deadzone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,72 +50,85 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
+              "Title": "UIBounce.cs",
+              "DocumentMoniker": "C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\Assets\\Script\\UIBounce.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\UIBounce.cs",
+              "ToolTip": "C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\Assets\\Script\\UIBounce.cs",
+              "RelativeToolTip": "Assets\\Script\\UIBounce.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-01T15:09:03.531Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "UIBouncingShader.cs",
               "DocumentMoniker": "C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\Assets\\Script\\UIBouncingShader.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\UIBouncingShader.cs",
               "ToolTip": "C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\Assets\\Script\\UIBouncingShader.cs",
               "RelativeToolTip": "Assets\\Script\\UIBouncingShader.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-01T14:51:25.016Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-01T14:51:25.016Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "BlinkText.cs",
               "DocumentMoniker": "C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\Assets\\Script\\BlinkText.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\BlinkText.cs",
               "ToolTip": "C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\Assets\\Script\\BlinkText.cs",
               "RelativeToolTip": "Assets\\Script\\BlinkText.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-01T13:53:25.438Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "PancakeLogic.cs",
               "DocumentMoniker": "C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\Assets\\Script\\PancakeLogic.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\PancakeLogic.cs",
               "ToolTip": "C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\Assets\\Script\\PancakeLogic.cs",
               "RelativeToolTip": "Assets\\Script\\PancakeLogic.cs",
-              "ViewState": "AgIAAHMAAAAAAAAAAAAkwB8AAABZAAAAAAAAAA==",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAgwEsAAABSAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-30T08:29:55.735Z"
+              "WhenOpened": "2026-04-30T08:29:55.735Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "SpatulaController.cs",
               "DocumentMoniker": "C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\Assets\\Script\\SpatulaController.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\SpatulaController.cs",
               "ToolTip": "C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\Assets\\Script\\SpatulaController.cs",
               "RelativeToolTip": "Assets\\Script\\SpatulaController.cs",
-              "ViewState": "AgIAAHkAAAAAAAAAAADwv7wAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAADQAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-30T08:29:08.794Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "GameCamera.cs",
               "DocumentMoniker": "C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\Assets\\Script\\GameCamera.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\GameCamera.cs",
               "ToolTip": "C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\Assets\\Script\\GameCamera.cs",
               "RelativeToolTip": "Assets\\Script\\GameCamera.cs",
-              "ViewState": "AgIAAD4AAAAAAAAAAAAIwFgAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAkwFIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-23T09:28:51.193Z"
+              "WhenOpened": "2026-04-23T09:28:51.193Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 3,
               "Title": "DeadZone.cs",
               "DocumentMoniker": "C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\Assets\\Script\\DeadZone.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\DeadZone.cs",
@@ -123,20 +140,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "GameManager.cs",
               "DocumentMoniker": "C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\Assets\\Script\\GameManager.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\GameManager.cs",
               "ToolTip": "C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\Assets\\Script\\GameManager.cs",
               "RelativeToolTip": "Assets\\Script\\GameManager.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAADwv0EAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAADgAAAAAAAAAAAAgwHAAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-23T08:46:54.534Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-23T08:46:54.534Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "PancakeDrag.cs",
               "DocumentMoniker": "C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\Assets\\Script\\PancakeDrag.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\PancakeDrag.cs",
@@ -148,7 +164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "PancakeSpawner.cs",
               "DocumentMoniker": "C:\\Users\\laptop\\OneDrive\\Documents\\UnityProjects\\PANCAKE\\Assets\\Script\\PancakeSpawner.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\PancakeSpawner.cs",

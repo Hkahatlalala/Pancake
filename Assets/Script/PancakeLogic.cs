@@ -73,7 +73,7 @@ public class PancakeLogic : MonoBehaviour
         {
             float targetAmplitude = isDropped ? rb.linearVelocity.magnitude * 0.02f : 0f;
             currentWiggle = Mathf.Lerp(currentWiggle, targetAmplitude, Time.deltaTime * 5f);
-            mat.SetFloat("_WiggleAmplitude", Mathf.Clamp(currentWiggle, 0f, 0.4f));
+            mat.SetFloat("_WiggleAmplitude", Mathf.Clamp(currentWiggle, 0.1f, 0.4f));
         }
 
         if (isDropped)
@@ -134,6 +134,18 @@ public class PancakeLogic : MonoBehaviour
 
         if (isDropped && isFirstLand)
         {
+            //
+            if (collision.gameObject.CompareTag("Pancake") || collision.gameObject.name.Contains("plate"))
+            {
+                Transform targetParent = collision.transform;
+                if (collision.gameObject.CompareTag("Pancake"))
+                {
+                    targetParent = collision.transform.parent;
+                }
+                transform.SetParent(targetParent, true);
+                originalScale = transform.localScale;
+            }
+
             if (collision.contacts.Length > 0 && collision.contacts[0].point.y < transform.position.y)
             {
                 float impactForce = Mathf.Abs(collision.relativeVelocity.y);

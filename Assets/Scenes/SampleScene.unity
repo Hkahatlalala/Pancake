@@ -246,6 +246,7 @@ MonoBehaviour:
   clickEffectPrefab: {fileID: 554297814363029700, guid: 7cf55ff47a1087746853ca191acbf6e5, type: 3}
   spawnPoint: {fileID: 1144325907}
   dragThreshold: 0.5
+  minYLimit: -2
   isTilting: 0
   isDragging: 0
   defaultPosition: {x: 0, y: 0, z: 0}
@@ -861,7 +862,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.5095825, y: 37.6423}
+  m_AnchoredPosition: {x: 2.5096436, y: 37.642303}
   m_SizeDelta: {x: 717.7125, y: 386.4606}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &666377448
@@ -1734,6 +1735,7 @@ GameObject:
   - component: {fileID: 1317996837}
   - component: {fileID: 1317996836}
   - component: {fileID: 1317996838}
+  - component: {fileID: 1317996839}
   m_Layer: 0
   m_Name: plate_0
   m_TagString: Untagged
@@ -1861,6 +1863,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 20.19408, y: 28.043629}
   m_EdgeRadius: 0
+--- !u!114 &1317996839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317996834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c262d5efcb16f90428893c564d879c60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlateMoving
+  speed: 0
+  distance: 1.75
 --- !u!1 &1409118899
 GameObject:
   m_ObjectHideFlags: 0
@@ -2606,7 +2622,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.002380371, y: -686}
+  m_AnchoredPosition: {x: -0.0024414062, y: -686}
   m_SizeDelta: {x: -0.0047607, y: -2037.7754}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2146329102
@@ -2717,19 +2733,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 86251659429748329, guid: 631742c59d555a4438f4360e131ad2b8, type: 3}
       propertyPath: m_Size.x
-      value: 12.411203
+      value: 12.450024
       objectReference: {fileID: 0}
     - target: {fileID: 86251659429748329, guid: 631742c59d555a4438f4360e131ad2b8, type: 3}
       propertyPath: m_Size.y
-      value: 1.657087
+      value: 1.6570872
       objectReference: {fileID: 0}
     - target: {fileID: 86251659429748329, guid: 631742c59d555a4438f4360e131ad2b8, type: 3}
       propertyPath: m_Offset.x
-      value: 0.0014634124
+      value: -0.017947854
       objectReference: {fileID: 0}
     - target: {fileID: 86251659429748329, guid: 631742c59d555a4438f4360e131ad2b8, type: 3}
       propertyPath: m_Offset.y
-      value: -1.9914626
+      value: -1.9914669
       objectReference: {fileID: 0}
     - target: {fileID: 2071206462184088193, guid: 631742c59d555a4438f4360e131ad2b8, type: 3}
       propertyPath: m_LocalPosition.x
