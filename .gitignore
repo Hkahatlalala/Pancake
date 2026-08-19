@@ -6,7 +6,6 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
-# Bịt mắt không cho Git nhìn thấy thư mục ảo của Visual Studio
 .vs/
 .idea/
 *.csproj
